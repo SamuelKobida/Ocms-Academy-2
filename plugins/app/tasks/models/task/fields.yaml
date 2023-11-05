@@ -1,0 +1,44 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+
+    name:
+        label: Name
+        type: text
+
+    description:
+        label: Description
+        type: textarea
+        size: large
+    
+    asignee:
+        label: Asign To
+        type: recordfinder
+        list: ~/plugins/rainlab/user/models/user/columns.yaml
+        prompt: Click the button to find a asignee
+
+    project:
+        label: Project
+        type: recordfinder
+        list: ~/plugins/app/projects/models/project/columns.yaml
+        prompt: Click the button to find a project
+
+    planned_start:
+        label: Planned Start
+        type: datepicker
+        mode: datetime
+        useTimezone: true
+
+    planned_time:
+        label: Planned Time
+        type: datepicker
+        mode: time
+
+    is_done:
+        label: Done
+        type: switch

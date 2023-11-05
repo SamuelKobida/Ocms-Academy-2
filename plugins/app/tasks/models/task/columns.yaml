@@ -1,0 +1,36 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+
+    name:
+        label: Name
+        searchable: true
+
+    description:
+        label: Description
+    
+    asignee:
+        label: Asigned To
+        relation: asignee
+        select: name
+
+    project:
+        label: Project
+        relation: project
+        select: name
+    
+    planned_start:
+        label: Planned Start
+        type: datetime
+
+    planned_time:
+        label: Planned Time
+        type: time
+
+    is_done:
+        label: Done
+        type: switch

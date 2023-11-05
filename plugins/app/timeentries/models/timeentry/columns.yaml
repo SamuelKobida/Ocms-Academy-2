@@ -1,0 +1,21 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    task:
+        label: Task
+        relation: task
+        select: name
+    
+    start_time:
+        label: Planned Start
+        type: time
+
+    end_time:
+        label: End Time
+        type: time    

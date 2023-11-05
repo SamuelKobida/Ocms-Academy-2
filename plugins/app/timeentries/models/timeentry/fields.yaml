@@ -1,0 +1,24 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+
+    task:
+        label: Task
+        type: recordfinder
+        list: ~/plugins/app/tasks/models/task/columns.yaml
+        prompt: Click the button to find a task
+
+    start_time:
+        label: Start Time
+        type: datepicker
+        mode: time
+
+    end_time:
+        label: End Time
+        type: datepicker
+        mode: time
