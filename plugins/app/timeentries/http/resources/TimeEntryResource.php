@@ -4,7 +4,7 @@ namespace App\TimeEntries\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\TimeEntries\Models\TimeEntry;
-use App\Tasks\Http\Resources\UserResource;
+use App\Tasks\Http\Resources\TaskResource;
 use App\Tasks\Models\Task;
 
 class TimeEntryResource extends JsonResource{

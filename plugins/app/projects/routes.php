@@ -11,7 +11,7 @@ Route::prefix('api/projects')->group(function () {
     { 
         Route::post('store' , [ProjectController::class , 'store']);
 
-        Route::post('update/{id}' , [ProjectController::class , 'update']);
+        Route::patch('update/{id}' , [ProjectController::class , 'update']);
     
         Route::post('complete/{id}' , [ProjectController::class , 'complete']);
     });

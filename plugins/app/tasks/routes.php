@@ -11,7 +11,7 @@ Route::prefix('api/tasks')->group(function () {
     { 
         Route::post('store' , [TaskController::class , 'store']);
 
-        Route::post('update/{id}' , [TaskController::class , 'update']);
+        Route::patch('update/{id}' , [TaskController::class , 'update']);
     
         Route::post('complete/{id}' , [TaskController::class , 'complete']);
     });

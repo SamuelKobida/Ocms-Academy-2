@@ -4,30 +4,42 @@ namespace App\TimeEntries\Http\Controllers;
 
 use App\TimeEntries\Models\TimeEntry;
 use Backend\Classes\Controller;
-use Illuminate\Http\Request;
 use App\TimeEntries\Http\Resources\TimeEntryResource;
+use App\Tasks\Models\Task;
 
 class TimeEntryController extends Controller
 {
-
-    public function index()
+    public function startTime($id)
     {
-        // index..
+        $task = Task::where('id', $id)->first();
+        if (!$task) {
+            return "This task does not exist.";
+        }
+        $timeentry = new TimeEntry();
+        $timeentry->task_id = $task->id;
+        $timeentry->start_time = now()->toTimeString();
+        $timeentry->save();   
+        return "You started working on task " . $task->name . " at: " . $timeentry->start_time;
     }
 
-    public function store(Request $request)
+    public function endTime($id)
     {
-        // store..
-    }
+        $task = Task::where('id', $id)->first();
+        if (!$task) {
+            return "This task does not exist.";
+        }
 
-    public function update(Request $request)
-    {
-        // update..
-    }
+        $timeentry = TimeEntry::where('task_id', $task->id)
+        ->whereNull('end_time')
+        ->first();
+        if (!$timeentry) {
+            return "You have to start another working session for task " . $task->name;
+        }
 
-    public function complete(Request $request)
-    {
-        // complete..
+        $timeentry->end_time = now()->toTimeString();
+        $timeentry->save(); 
+
+        return "You finished working on task " . $task->name . " at: " . $timeentry->end_time;
+
     }
-    
 }
