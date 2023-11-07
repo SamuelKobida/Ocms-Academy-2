@@ -15,6 +15,14 @@ class TimeEntryController extends Controller
         if (!$task) {
             return "This task does not exist.";
         }
+
+        $timeentry = TimeEntry::where('task_id', $task->id)
+        ->whereNull('end_time')
+        ->first();
+        if ($timeentry) {
+        return "You working session for task " . $task->name . " is stil running";
+        }
+
         $timeentry = new TimeEntry();
         $timeentry->task_id = $task->id;
         $timeentry->start_time = now()->toTimeString();
