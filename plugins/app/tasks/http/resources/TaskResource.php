@@ -23,6 +23,7 @@ class TaskResource extends JsonResource{
             'planned_start' => $this->planned_start,
             'planned_time' => $this->planned_time,
             'is_done' => $this->is_done,
+            'total_time' => $this->getTotalTaskTime()
         ];
     }
 

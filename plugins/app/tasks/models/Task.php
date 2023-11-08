@@ -1,6 +1,8 @@
 <?php namespace App\Tasks\Models;
 
 use Model;
+use App\TimeEntries\Models\TimeEntry;
+use Carbon\Carbon;
 
 /**
  * Task Model
@@ -66,4 +68,25 @@ class Task extends Model
         'asignee' => ['RainLab\User\Models\User']
     ];
 
+
+    public function getTotalTaskTimeInSeconds()
+    {
+        return $totalSeconds = $this->timeEntries()
+            ->get()
+            ->sum(function ($timeEntry) {
+                $start = Carbon::parse($timeEntry->start_time);
+                $end = Carbon::parse($timeEntry->end_time);
+                return $end->diffInSeconds($start);
+            });
+    }
+
+    public function getTotalTaskTime()
+    {
+        $totalSeconds = $this->getTotalTaskTimeInSeconds();
+        $hours = floor($totalSeconds / 3600);
+        $minutes = floor(($totalSeconds % 3600) / 60);
+        $seconds = $totalSeconds % 60;
+        return sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
+    }
+    
 }

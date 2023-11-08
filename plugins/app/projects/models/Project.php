@@ -1,6 +1,7 @@
 <?php namespace App\Projects\Models;
 
 use Model;
+use App\Tasks\Models\Task;
 
 /**
  * Project Model
@@ -64,4 +65,18 @@ class Project extends Model
         'project_manager' => ['RainLab\User\Models\User'],
         'customer' => ['RainLab\User\Models\User']
     ];
+
+    public function getTotalProjectTime()
+    {
+        $totalSeconds = 0;
+        foreach ($this->tasks as $task) {
+            $totalSeconds += $task->getTotalTaskTimeInSeconds();
+        }
+    
+        $hours = floor($totalSeconds / 3600);
+        $minutes = floor(($totalSeconds % 3600) / 60);
+        $seconds = $totalSeconds % 60;
+        return sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
+    }
+
 }
