@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Projects\Models\Project;
 use LibUser\UserApi\Http\Resources\UserResource;
 use LibUser\Userapi\Models\User;
-use App\Tasks\Models\Task;
 
 class ProjectResource extends JsonResource{
 
